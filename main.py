@@ -48,7 +48,7 @@ def save_json():
         json.dump(dict_of_files_and_hashes, f, indent=4)
 
 
-def create_b_up_all_files():
+def backup_changed_files():
     os.makedirs(b_up_dir, exist_ok=True)
     try:
         with open(b_up_dir + r'\snapshot_last.json') as json_file:
@@ -71,6 +71,6 @@ def create_file_b_up(src):
 
 get_list_of_files(target_dir)
 get_dict_of_files_and_hashes()
-create_b_up_all_files()
+backup_changed_files()
 save_json()
 
