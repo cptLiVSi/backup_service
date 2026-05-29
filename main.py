@@ -12,7 +12,7 @@ target_dir_name = target_dir.split('\\')
 root_dir = os.path.dirname(target_dir)
 b_up_dir = root_dir + '\\' + target_dir_name[-1] + '_b_up'
 
-current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S")
+current_datetime = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
 list_of_files = []
 dict_of_files_and_hashes = {}
@@ -43,9 +43,9 @@ def get_dict_of_files_and_hashes():
 
 def save_json():
     with open(b_up_dir + r'\snapshot_last.json', 'w') as f:
-        json.dump(dict_of_files_and_hashes, f)
+        json.dump(dict_of_files_and_hashes, f, indent=4)
     with open(b_up_dir + r'\snapshot_' + current_datetime + '.json', 'w') as f:
-        json.dump(dict_of_files_and_hashes, f)
+        json.dump(dict_of_files_and_hashes, f, indent=4)
 
 
 def create_b_up_all_files():
@@ -57,11 +57,8 @@ def create_b_up_all_files():
         prev_snapshot = {}
 
     for k, v in dict_of_files_and_hashes.items():
-        if k not in prev_snapshot:
+        if prev_snapshot.get(k) != v:
             create_file_b_up(k)
-        else:
-            if prev_snapshot[k] != v:
-                create_file_b_up(k)
 
 
 def create_file_b_up(src):
