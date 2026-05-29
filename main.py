@@ -9,8 +9,8 @@ from pathlib import Path
 # TODO: remove hardcode
 target_dir = r'C:\Users\user\py\tst_b_up\t1'
 target_dir_name = target_dir.split('\\')
-roor_dir = os.path.dirname(target_dir)
-b_up_dir = roor_dir + '\\' + target_dir_name[-1] + '_b_up'
+root_dir = os.path.dirname(target_dir)
+b_up_dir = root_dir + '\\' + target_dir_name[-1] + '_b_up'
 
 current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S")
 
